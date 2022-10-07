@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+{% block title %}
+New Page
+{% endblock %}
+{% block body %}
+{% if title %}
+<h2>Error: "{{ title }}" already exists</h2>
+<br>
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'new_page' %}">Create New Page</a>
+{% else %}
+<h1>Create New Page</h1>
+<form id="content" action="{% url "new_page" %}" method="POST">
+    {% csrf_token %}
+    <input style="width: 70%; height: 30px; margin: 5px;" type="text" name="title" placeholder="Title">
+    <textarea style="height: 200px; width:70%; margin-left: 5px;" placeholder="Markdown content" name="content"></textarea>
+    <input form="content" type="submit" 
+    style="background-color: #4285F4; border-radius: 3px; color: white; border-style:hidden; display: flex; margin-left: 5px;">
+</form>
+{% endif %}
+{% endblock %}

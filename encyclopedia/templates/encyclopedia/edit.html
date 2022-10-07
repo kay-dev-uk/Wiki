@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+{% block title %}
+Edit {{ title  }}
+{% endblock %}
+{% block body %}
+
+<h1>Edit Page {{title}}</h1>
+
+<form action="{% url "edit" %}" method="POST">
+    {% csrf_token %}
+    <input style="width: 70%; height: 30px; margin: 5px; opacity: 0.5;" type="text" name="page_title" value={{ title }} readonly>
+    <textarea style="height: 200px; width:70%; margin-left: 5px;" name="content">{{ content }}</textarea>
+    <input type="submit" value="Save"
+    style="background-color: #4285F4; border-radius: 3px; color: white; border-style:hidden; display: flex; margin-left: 5px;">
+</form>
+
+{% endblock %}

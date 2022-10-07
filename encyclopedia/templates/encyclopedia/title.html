@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+
+<br>
+
+{% block title %}
+{{ name }}
+{% endblock %}
+{% block body %}
+{% if title %}
+    {{ title | safe }}
+
+<form style="margin-top: 30px;" action={% url "edit" %}>
+    <input type="hidden" name="page_title" value="{{ name }}">
+    <input type="submit"  value="Edit"
+    style="background-color: #4285F4; border-radius: 3px; color: white; border-style:hidden;">
+</form>
+{% endif %}
+{% if non_existent_title %}
+    <h2>Error: "{{ non_existent_title }}" doesn't exist</h2>
+    <br>
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'new_page' %}">Create New Page</a>
+{% endif %}
+
+{% endblock %}
